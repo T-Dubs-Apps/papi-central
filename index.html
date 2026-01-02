@@ -3,43 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAPI CENTRAL - Commercial Suite</title>
+    <title>PAPI CENTRAL | Commercial Suite</title>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <style>
-        body { background: #020617; color: #f8fafc; font-family: sans-serif; text-align: center; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: #0f172a; padding: 30px; border-radius: 15px; border: 1px solid #1e293b; }
-        h1 { color: #38bdf8; letter-spacing: 2px; }
-        .motto { color: #94a3b8; font-style: italic; margin-bottom: 30px; }
-        .commercial-box { background: #1e293b; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #38bdf8; }
-        .price { font-size: 2rem; color: #22c55e; margin: 10px 0; font-weight: bold; }
-        ul { text-align: left; display: inline-block; color: #94a3b8; }
+        :root { --papi-blue: #38bdf8; --papi-bg: #020617; --papi-card: #0f172a; --papi-success: #22c55e; }
+        body { background: var(--papi-bg); color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--papi-card); padding: 40px; border-radius: 20px; border: 1px solid #1e293b; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        h1 { font-size: 3rem; color: var(--papi-blue); margin: 0; letter-spacing: 3px; }
+        .motto { color: #94a3b8; font-style: italic; margin-bottom: 40px; }
+        .pro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
+        .feature-list { background: #1e293b; padding: 25px; border-radius: 12px; border-left: 4px solid var(--papi-blue); }
+        .payment-zone { background: #1e293b; padding: 25px; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--papi-success); }
+        .price { font-size: 2.5rem; color: var(--papi-success); font-weight: bold; margin: 10px 0; }
+        .status-bar { margin-top: 40px; font-size: 0.8rem; color: #475569; border-top: 1px solid #1e293b; pt: 20px; }
+        @media (max-width: 768px) { .pro-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>PAPI CENTRAL</h1>
-        <p class="motto">"Secure your nest, provide for the rest."</p>
+        <p class="motto">"One of the most important things that a human can have is self control."</p>
 
-        <div class="commercial-box">
-            <h2>UPGRADE TO PAPI-GUARD PRO</h2>
-            <p>Unlock the Full Power of the 2026 Suite</p>
-            <ul>
-                <li>✅ Unlimited File Conversions</li>
-                <li>✅ AES-256 Military Grade Encryption</li>
-                <li>✅ Commercial Usage License</li>
-                <li>✅ Direct Support from the Creator</li>
-            </ul>
-            <div class="price">$19.99</div>
+        <div class="pro-grid">
+            <div class="feature-list">
+                <h2 style="color: var(--papi-blue);">PAPI-Guard Pro</h2>
+                <p>Commercial Grade Security Suite</p>
+                <ul style="list-style: '✓ '; color: #94a3b8; line-height: 2;">
+                    <li>AES-256 Data Tunneling</li>
+                    <li>Android Clone Remover Tool</li>
+                    <li>Auto-Code Clerk Priority</li>
+                    <li>Commercial Deployment License</li>
+                    <li>Zero-Knowledge Privacy Policy</li>
+                </ul>
+            </div>
 
-            <stripe-buy-button
-              buy-button-id="REPLACE_WITH_YOUR_BUY_BUTTON_ID"
-              publishable-key="REPLACE_WITH_YOUR_PUBLISHABLE_KEY"
-            >
-            </stripe-buy-button>
+            <div class="payment-zone">
+                <h3 style="margin-top:0;">Activate License</h3>
+                <div class="price">$19.99</div>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px;">Instant Delivery via Email</p>
+                
+                <stripe-buy-button
+                  buy-button-id="buy_btn_YOUR_LIVE_BUTTON_ID"
+                  publishable-key="pk_live_YOUR_LIVE_PUBLISHABLE_KEY"
+                >
+                </stripe-buy-button>
+                </div>
         </div>
 
-        <p style="font-size: 0.8rem; color: #475569;">Secure payments processed by Stripe. All rights reserved.</p>
+        <div class="status-bar">
+            <span>NETWORK STATUS: <span style="color:var(--papi-success)">SECURED</span></span> | 
+            <span>OPERATING TEMP: <span style="color:var(--papi-blue)">COLD</span></span>
+        </div>
     </div>
 
 </body>
