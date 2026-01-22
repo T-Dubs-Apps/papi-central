@@ -1,0 +1,58 @@
+
+Copilot Instructions for AI Coding Agents
+
+Purpose:
+
+Enable an AI agent to become productive quickly by listing where to look, canonical workflows, and repo-specific patterns.
+Orientation (first 5 minutes):
+
+Inspect root manifests: look for package.json, pyproject.toml, go.mod, pubspec.yaml, Makefile, Dockerfile.
+Identify entry points and services: lib/, bin/, src/, cmd/, packages/, apps/.
+Open CI: check .github/workflows/ and any ci/ directories.
+Read README.md and CONTRIBUTING.md for human workflows.
+Big-picture architecture (where to map):
+
+Service boundaries: folders named api, server, worker, cron usually indicate separate processes.
+Data flows: search for DB clients, HTTP servers/clients, message brokers (Kafka/RabbitMQ), and storage SDK usage to draw the graph.
+Monorepo cues: presence of packages/, pnpm-workspace.yaml, lerna.json, or multiple pubspec.yaml files.
+Canonical commands (find exact ones and prefer them):
+
+Use scripts from manifests. Examples to search for and trust as canonical:
+npm run build / npm test / npm start
+python -m pytest, poetry run pytest
+go test ./...
+flutter run or dart run when pubspec.yaml exists
+If ambiguous, use CI job steps from .github/workflows as the source of truth.
+Project conventions & patterns to respect:
+
+JavaScript/TypeScript: src/ → dist/; check tsconfig.json paths and scripts.
+Dart/Flutter: single-app lib/main.dart or bin/; prefer flutter tooling if flutter appears in pubspec.yaml.
+Go: binaries under cmd/<name>/.
+Tests: run per-package tests in monorepos; do not assume a single root test command unless present.
+Lint/format: check .eslintrc, analysis_options.yaml, or analysis_options in Dart for formatting rules.
+Integration points to note:
+
+Environment files: *.env, .env.example — list required vars.
+Infra manifests: Dockerfile, docker-compose.yml, k8s/, helm/.
+External services: note usages of AWS/GCP/Azure SDKs, database drivers, or third-party APIs.
+What an agent should produce here (concrete, replaceable content):
+
+Top-level snapshot (3–6 lines): root build/test/run commands + main service folders.
+Exact commands to run locally (copy-paste):
+Build: npm run build or make build or flutter build
+Test: npm test or pytest -q or flutter test
+Start: npm start or docker-compose up --build or flutter run
+Key files to inspect for changes: list 3–6 authoritative paths (e.g., package.json, pubspec.yaml, lib/main.dart, src/server/).
+When changing code:
+
+Make small, focused commits. Update affected README.md or pubspec.yaml/package.json scripts if behavior changes.
+For monorepos, update both package-level and root workspace manifests.
+Merging with existing instructions:
+
+If this repo already has .github/copilot-instructions.md, merge by preserving any repo-specific commands, CI job names, and maintainer contacts.
+If unclear:
+
+Add a short repository snapshot at the top of this file listing the canonical: build, test, run commands and main service folders.
+Maintainers / Contacts:
+
+(Replace this line with the team or channel to ask for clarifications.)
